@@ -1,10 +1,10 @@
 package com.practice.dao.face;
 
-import java.util.List;
+import org.apache.ibatis.annotations.Mapper;
 
 import com.practice.dto.Member;
 
+@Mapper
 public interface MemberDao {
-	public List<Member> selectAll();
-	
+	public Member selectAll();
 }
