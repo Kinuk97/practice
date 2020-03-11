@@ -3,7 +3,7 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
-<mapper namespace="com.practice.dao.face.MemberDao">
+<mapper namespace="com.practice.dao.MemberDao">
     <select id="selectAll" resultType="Member">
         SELECT * FROM member
     </select>

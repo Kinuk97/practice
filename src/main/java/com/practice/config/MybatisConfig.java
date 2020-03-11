@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 
 @Configuration
-@MapperScan(basePackages = "com.practice.dao.face")
+@MapperScan(basePackages = "com.practice.dao")
 public class MybatisConfig {
 
 	@Bean
@@ -20,7 +20,7 @@ public class MybatisConfig {
 
 		sqlSessionFactory.setDataSource(dataSource);
 		sqlSessionFactory.setTypeAliasesPackage("com.practice.dto");
-		sqlSessionFactory.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("classpath:/com/practice/dao/mapper/*.xml"));
+		sqlSessionFactory.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("classpath:/mapper/*.xml"));
 		
 		return sqlSessionFactory.getObject();
 	}

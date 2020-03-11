@@ -1,4 +1,4 @@
-package com.practice.dao.face;
+package com.practice.dao;
 
 import org.apache.ibatis.annotations.Mapper;
 
