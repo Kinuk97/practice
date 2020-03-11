@@ -8,9 +8,12 @@ import com.practice.dao.MemberDao;
 
 @Controller
 public class HomeController {
-	
-	@Autowired
-	private MemberDao memberDao;
+
+	private final MemberDao memberDao;
+
+	public HomeController(MemberDao memberDao) {
+		this.memberDao = memberDao;
+	}
 
 	@RequestMapping(value = "/")
 	public String home() {

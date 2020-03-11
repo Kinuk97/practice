@@ -7,4 +7,7 @@
     <select id="selectAll" resultType="Member">
         SELECT * FROM member
     </select>
+    <select id="selectOne" parameterType="Member" resultType="Member">
+        SELECT * FROM member WHERE email = #{email}
+    </select>
 </mapper>
