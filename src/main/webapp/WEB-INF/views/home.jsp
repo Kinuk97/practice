@@ -4,6 +4,7 @@
 
 <div class="container">
 
+<button class="btn btn-warning btn-mg-5" onclick="href.location='/daeho/daeho'"><a href="/daeho/daeho">대호페이지바로가기</a></button>
 
 </div>
 
