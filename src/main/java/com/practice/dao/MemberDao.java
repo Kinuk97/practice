@@ -1,9 +1,9 @@
 package com.practice.dao;
 
-import org.apache.ibatis.annotations.Mapper;
-
 import com.practice.dto.Member;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Repository
 public interface MemberDao {
@@ -12,7 +12,7 @@ public interface MemberDao {
 	 *
 	 * @return
 	 */
-	public Member selectAll();
+	public List<Member> selectAll();
 
 	/**
 	 * email로 아이디 조회하기
