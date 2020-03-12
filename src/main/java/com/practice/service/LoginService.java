@@ -9,9 +9,9 @@ public interface LoginService {
      * 로그인 여부 확인 후 결과 반환
      *
      * @param member - email, pwd
-     * @return boolean - 결과값
+     * @return Member - 결과값 (true == 로그인 유저 정보, false == null)
      */
-    public boolean checkId(Member member);
+    public Member checkId(Member member);
 
 
 }

@@ -16,20 +16,17 @@ public class LoginServiceImpl implements LoginService {
     }
 
     @Override
-    public boolean checkId(Member member) {
+    public Member checkId(Member member) {
         Member checkMember = memberDao.selectOne(member);
 
+        // 맞는 아이디가 없을 경우
         if (checkMember == null) {
-            return false;
+            // 로그인 성공
+            if (EncryptUtil.isMatch(member.getPwd(), checkMember.getPwd())) {
+                return checkMember;
+            }
         }
 
-        if (EncryptUtil.isMatch(member.getPwd(), checkMember.getPwd())) {
-            // 매개변수로 받은 member와 같은 객체인가 확인해야함.
-            member = checkMember;
-
-            return true;
-        } else {
-            return false;
-        }
+        return null;
     }
 }
