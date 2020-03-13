@@ -29,7 +29,7 @@
 		//Must contain at least one upper case letter, one lower case letter and (one number AND one special char).
 		var best = /^(?=\S*?[A-Z])(?=\S*?[a-z])(?=\S*?[0-9])(?=\S*?[^\w\*])\S{8,}$/;
 
-		$('#password').on('keyup', function () {
+		$('#inputPassword').on('keyup', function () {
 		    var password = $(this);
 		    var pass = password.val();
 		    var passLabel = $('[for="password"]');
@@ -50,10 +50,9 @@
 		        stength = 'Very Weak';
 		    }
 
-		    var popover = pwd.attr('data-content', stength).data('bs.popover');
+		    var popover = password.attr('data-content', stength).data('bs.popover');
 		    popover.setContent();
 		    popover.$tip.addClass(popover.options.placement).removeClass('danger success info warning primary').addClass(pclass);
-
 		});
 
 		$('input[data-toggle="popover"]').popover({
