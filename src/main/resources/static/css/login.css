@@ -136,3 +136,11 @@ body {
 .mt-15 {
     margin-top: 15%;
 }
+
+/* Join CSS */
+.progress {
+    height: 5px;
+}
+.fa-times {
+    color: red;
+}
