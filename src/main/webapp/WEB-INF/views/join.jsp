@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
 
 	<link rel="stylesheet" href="css/login.css">
 	<!-- 팝오버 -->
@@ -57,33 +58,41 @@
 // 		});
 			
 
-				var loadDiv = '';
-				loadDiv +='<div id="popover-password">';
-				loadDiv +='<p>Password Strength: <span id="result"> </span></p>';
-				loadDiv +='<div class="progress">';
-				loadDiv +='<div id="password-strength" class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:0%">';
-				loadDiv +='</div>';
-				loadDiv +='</div>';
-				loadDiv +='<ul class="list-unstyled">';
-				loadDiv +='<li class=""><span class="low-upper-case"><i class="fa fa-times" aria-hidden="true"></i></span>&nbsp; 1 lowercase &amp; 1 uppercase</li>';
-				loadDiv +='<li class=""><span class="one-number"><i class="fa fa-times" aria-hidden="true"></i></span> &nbsp;1 number (0-9)</li>';
-				loadDiv +='<li class=""><span class="one-special-char"><i class="fa fa-times" aria-hidden="true"></i></span> &nbsp;1 Special Character (!@#$%^&*).</li>';
-				loadDiv +='<li class=""><span class="eight-character"><i class="fa fa-times" aria-hidden="true"></i></span>&nbsp; Atleast 8 Character</li>';
-				loadDiv +='</ul>';
-				loadDiv +='</div>';
+				// var loadDiv = '';
+				// loadDiv +='<div id="popover-password">';
+				// loadDiv +='<p>Password Strength: <span id="result"> </span></p>';
+				// loadDiv +='<div class="progress">';
+				// loadDiv +='<div id="password-strength" class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:0%">';
+				// loadDiv +='</div>';
+				// loadDiv +='</div>';
+				// loadDiv +='<ul class="list-unstyled">';
+				// loadDiv +='<li class=""><span class="low-upper-case"><i class="fa fa-times" aria-hidden="true"></i></span>&nbsp; 1 lowercase &amp; 1 uppercase</li>';
+				// loadDiv +='<li class=""><span class="one-number"><i class="fa fa-times" aria-hidden="true"></i></span> &nbsp;1 number (0-9)</li>';
+				// loadDiv +='<li class=""><span class="one-special-char"><i class="fa fa-times" aria-hidden="true"></i></span> &nbsp;1 Special Character (!@#$%^&*).</li>';
+				// loadDiv +='<li class=""><span class="eight-character"><i class="fa fa-times" aria-hidden="true"></i></span>&nbsp; Atleast 8 Character</li>';
+				// loadDiv +='</ul>';
+				// loadDiv +='</div>';
+
+                $('#inputPassword').popover({
+                    content: function() {
+                        var content = $(this).attr("data-popover-content");
+                        console.log($(content));
+                        return $(content).children(".popover-body").html();
+                    }
+                    ,trigger : 'focus'
+                })
+
+
 				
-				
-		
-				
-				$('#inputPassword').keyup(function(){
-					
-					var password = $('#inputPassword').val();
-					console.log(password);
-					
+				$('#inputPassword').keyup(
+
 					function checkStrength(password){
-						
+
+                        // console.log(password);
+                        var password = $('#inputPassword').val();
+
 						var strength = 0;
-						
+
 			            //If password contains both lower and uppercase characters, increase strength value.
 			            if (password.match(/([a-z].*[A-Z])|([A-Z].*[a-z])/)) {
 			                strength += 1;
@@ -163,16 +172,9 @@
 			                return 'Strong'
 			            }
 						
-					}
-					
-					$('#inputPassword').popover({				
-						content : loadDiv
-						,trigger : 'hover'
-					})
-
-						
 
 					
+
 				})
 
 
@@ -203,9 +205,24 @@
                         <div class="form-label-group">
                             <input type="password" id="inputPassword" name="pwd" class="form-control" placeholder="Password"
                                    required
-  									data-toggle="popover" data-placement="right" 
-  									data-container="body" data-html="true">
-                            <label for="inputPassword">암호</label>                            
+  									data-toggle="popover" data-placement="right" data-html="true" data-popover-content="#popover-password">
+                            <label for="inputPassword">암호</label>
+
+                            <div id="popover-password" >
+                                <div class="popover-body">
+                                    <p>Password Strength: <span id="result"> </span></p>
+                                    <div class="progress">
+                                        <div id="password-strength" class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:0%">
+                                        </div>
+                                    </div>
+                                    <ul class="list-unstyled">
+                                        <li class=""><span class="low-upper-case"><i class="fa fa-times" aria-hidden="true"></i></span>&nbsp; 1 lowercase &amp; 1 uppercase</li>
+                                        <li class=""><span class="one-number"><i class="fa fa-times" aria-hidden="true"></i></span> &nbsp;1 number (0-9)</li>
+                                        <li class=""><span class="one-special-char"><i class="fa fa-times" aria-hidden="true"></i></span> &nbsp;1 Special Character (!@#$%^&*).</li>
+                                        <li class=""><span class="eight-character"><i class="fa fa-times" aria-hidden="true"></i></span>&nbsp; Atleast 8 Character</li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
                         
                         <div class="form-label-group">
