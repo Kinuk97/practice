@@ -1,25 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+         pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-	<title>Insert title here</title>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
 
-	<link rel="stylesheet" href="css/login.css">
-	<!-- 팝오버 -->
-<%--	<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">--%>
-<%--	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>--%>
-<%--	<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>--%>
+    <link rel="stylesheet" href="css/login.css">
+    <!-- 팝오버 -->
+    <%--	<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">--%>
+    <%--	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>--%>
+    <%--	<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>--%>
 
-	
-	<script type="text/javascript">
-	$(document).ready(function(){
+
+    <script type="text/javascript">
+        $(document).ready(function () {
 
 // 		//minimum 8 characters
 // 		var bad = /(?=.{8,}).*/;
@@ -56,134 +56,143 @@
 // 		    popover.setContent();
 // 		    popover.$inputPassword.addClass(popover.options.placement).removeClass('danger success info warning primary').addClass(pclass);
 // 		});
-			
-
-				// var loadDiv = '';
-				// loadDiv +='<div id="popover-password">';
-				// loadDiv +='<p>Password Strength: <span id="result"> </span></p>';
-				// loadDiv +='<div class="progress">';
-				// loadDiv +='<div id="password-strength" class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:0%">';
-				// loadDiv +='</div>';
-				// loadDiv +='</div>';
-				// loadDiv +='<ul class="list-unstyled">';
-				// loadDiv +='<li class=""><span class="low-upper-case"><i class="fa fa-times" aria-hidden="true"></i></span>&nbsp; 1 lowercase &amp; 1 uppercase</li>';
-				// loadDiv +='<li class=""><span class="one-number"><i class="fa fa-times" aria-hidden="true"></i></span> &nbsp;1 number (0-9)</li>';
-				// loadDiv +='<li class=""><span class="one-special-char"><i class="fa fa-times" aria-hidden="true"></i></span> &nbsp;1 Special Character (!@#$%^&*).</li>';
-				// loadDiv +='<li class=""><span class="eight-character"><i class="fa fa-times" aria-hidden="true"></i></span>&nbsp; Atleast 8 Character</li>';
-				// loadDiv +='</ul>';
-				// loadDiv +='</div>';
-
-                $('#inputPassword').popover({
-                    content: function() {
-                        var content = $(this).attr("data-popover-content");
-                        console.log($(content));
-                        return $(content).children(".popover-body").html();
-                    }
-                    ,trigger : 'focus'
-                })
 
 
-				
-				$('#inputPassword').keyup(
+            // var loadDiv = '';
+            // loadDiv +='<div id="popover-password">';
+            // loadDiv +='<p>Password Strength: <span id="result"> </span></p>';
+            // loadDiv +='<div class="progress">';
+            // loadDiv +='<div id="password-strength" class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:0%">';
+            // loadDiv +='</div>';
+            // loadDiv +='</div>';
+            // loadDiv +='<ul class="list-unstyled">';
+            // loadDiv +='<li class=""><span class="low-upper-case"><i class="fa fa-times" aria-hidden="true"></i></span>&nbsp; 1 lowercase &amp; 1 uppercase</li>';
+            // loadDiv +='<li class=""><span class="one-number"><i class="fa fa-times" aria-hidden="true"></i></span> &nbsp;1 number (0-9)</li>';
+            // loadDiv +='<li class=""><span class="one-special-char"><i class="fa fa-times" aria-hidden="true"></i></span> &nbsp;1 Special Character (!@#$%^&*).</li>';
+            // loadDiv +='<li class=""><span class="eight-character"><i class="fa fa-times" aria-hidden="true"></i></span>&nbsp; Atleast 8 Character</li>';
+            // loadDiv +='</ul>';
+            // loadDiv +='</div>';
 
-					function checkStrength(password){
+            var strength = 0;
 
-                        // console.log(password);
-                        var password = $('#inputPassword').val();
+            $('#inputPassword').popover({
+                content: function () {
+                    var content = $(this).attr("data-popover-content");
 
-						var strength = 0;
+                    // if (strength < 2) {
+                    //
+                    //     $(content).children(".progress-bar").addClass('bg-danger');
+                    //     $(content).children(".progress-bar").css('width', '10%');
+                    //
+                    // } else if (strength == 2) {
+                    //     $(content).children(".progress-bar").removeClass('bg-danger');
+                    //     $(content).children(".progress-bar").addClass('bg-warning');
+                    //     $(content).children(".progress-bar").css('width', '60%');
+                    // } else if (strength == 4) {
+                    //     $(content).children(".progress-bar").removeClass('bg-warning');
+                    //     $(content).children(".progress-bar").addClass('bg-success');
+                    //     $(content).children(".progress-bar").css('width', '100%');
+                    //
+                    // }
 
-			            //If password contains both lower and uppercase characters, increase strength value.
-			            if (password.match(/([a-z].*[A-Z])|([A-Z].*[a-z])/)) {
-			                strength += 1;
-			                $('.low-upper-case').addClass('text-success');
-			                $('.low-upper-case i').removeClass('fa-times').addClass('fa-check');
-			                $('#popover-password-top').addClass('hide');
+                    return $(content).children(".popover-body").html();
+                }
+                , trigger: 'focus'
+                , placeholder: "right"
+            });
 
+            $('#inputPassword').on('shown.bs.popover', function() {
+                console.log(strength);
+                checkStrength();
+            });
 
-			            } else {
-			                $('.low-upper-case').removeClass('text-success');
-			                $('.low-upper-case i').addClass('fa-times').removeClass('fa-check');
-			                $('#popover-password-top').removeClass('hide');
-			            }
+            $('#inputPassword').on("keyup", function() {
+                checkStrength();
+            });
 
-			            //If it has numbers and characters, increase strength value.
-			            if (password.match(/([a-zA-Z])/) && password.match(/([0-9])/)) {
-			                strength += 1;
-			                $('.one-number').addClass('text-success');
-			                $('.one-number i').removeClass('fa-times').addClass('fa-check');
-			                $('#popover-password-top').addClass('hide');
+            function checkStrength() {
+                // console.log(password);
+                let password = $('#inputPassword').val();
 
-			            } else {
-			                $('.one-number').removeClass('text-success');
-			                $('.one-number i').addClass('fa-times').removeClass('fa-check');
-			                $('#popover-password-top').removeClass('hide');
-			            }
+                strength = 0;
 
-			            //If it has one special character, increase strength value.
-			            if (password.match(/([!,%,&,@,#,$,^,*,?,_,~])/)) {
-			                strength += 1;
-			                $('.one-special-char').addClass('text-success');
-			                $('.one-special-char i').removeClass('fa-times').addClass('fa-check');
-			                $('#popover-password-top').addClass('hide');
-
-			            } else {
-			                $('.one-special-char').removeClass('text-success');
-			                $('.one-special-char i').addClass('fa-times').removeClass('fa-check');
-			                $('#popover-password-top').removeClass('hide');
-			            }
-
-			            if (password.length > 7) {
-			                strength += 1;
-			                $('.eight-character').addClass('text-success');
-			                $('.eight-character i').removeClass('fa-times').addClass('fa-check');
-			                $('#popover-password-top').addClass('hide');
-
-			            } else {
-			                $('.eight-character').removeClass('text-success');
-			                $('.eight-character i').addClass('fa-times').removeClass('fa-check');
-			                $('#popover-password-top').removeClass('hide');
-			            }
-
-
-			            // If value is less than 2
-
-			            if (strength < 2) {
-			                $('.pwdResult').removeClass("text-danger text-warning text-success");
-			                $('.progress-bar').addClass('progress-bar-danger');
-
-			                $('.pwdResult').addClass('text-danger').text('Very Week');
-			                $('.progress-bar').css('width', '10%');
-			            } else if (strength == 2) {
-			                $('.pwdResult').addClass('good');
-			                $('.progress-bar').removeClass('progress-bar-danger');
-			                $('.progress-bar').addClass('progress-bar-warning');
-			                $('.pwdResult').addClass('text-warning').text('Week')
-			                $('.progress-bar').css('width', '60%');
-			                return 'Week'
-			            } else if (strength == 4) {
-			                $('.pwdResult').removeClass("text-danger text-warning text-success");
-			                $('.pwdResult').addClass('strong');
-			                $('.progress-bar').removeClass('progress-bar-warning');
-			                $('.progress-bar').addClass('progress-bar-success');
-			                $('.pwdResult').addClass('text-success').text('Strength');
-			                $('.progress-bar').css('width', '100%');
-
-			                return 'Strong'
-			            }
-						
-
-					
-
-				})
+                //If password contains both lower and uppercase characters, increase strength value.
+                if (password.match(/([a-z].*[A-Z])|([A-Z].*[a-z])/)) {
+                    strength += 1;
+                    $('.low-upper-case').addClass('text-success');
+                    $('.low-upper-case i').removeClass('fa-times').addClass('fa-check');
+                    $('#popover-password-top').addClass('hide');
 
 
-				
-				
-				
-	});
-	
-	</script>
+                } else {
+                    $('.low-upper-case').removeClass('text-success');
+                    $('.low-upper-case i').addClass('fa-times').removeClass('fa-check');
+                    $('#popover-password-top').removeClass('hide');
+                }
+
+                //If it has numbers and characters, increase strength value.
+                if (password.match(/([a-zA-Z])/) && password.match(/([0-9])/)) {
+                    strength += 1;
+                    $('.one-number').addClass('text-success');
+                    $('.one-number i').removeClass('fa-times').addClass('fa-check');
+                    $('#popover-password-top').addClass('hide');
+
+                } else {
+                    $('.one-number').removeClass('text-success');
+                    $('.one-number i').addClass('fa-times').removeClass('fa-check');
+                    $('#popover-password-top').removeClass('hide');
+                }
+
+                //If it has one special character, increase strength value.
+                if (password.match(/([!,%,&,@,#,$,^,*,?,_,~])/)) {
+                    strength += 1;
+                    $('.one-special-char').addClass('text-success');
+                    $('.one-special-char i').removeClass('fa-times').addClass('fa-check');
+                    $('#popover-password-top').addClass('hide');
+
+                } else {
+                    $('.one-special-char').removeClass('text-success');
+                    $('.one-special-char i').addClass('fa-times').removeClass('fa-check');
+                    $('#popover-password-top').removeClass('hide');
+                }
+
+                if (password.length > 7) {
+                    strength += 1;
+                    $('.eight-character').addClass('text-success');
+                    $('.eight-character i').removeClass('fa-times').addClass('fa-check');
+                    $('#popover-password-top').addClass('hide');
+
+                } else {
+                    $('.eight-character').removeClass('text-success');
+                    $('.eight-character i').addClass('fa-times').removeClass('fa-check');
+                    $('#popover-password-top').removeClass('hide');
+                }
+
+                // If value is less than 2
+                if (strength < 2) {
+                    $('.pwdResult').removeClass("text-danger text-warning text-success");
+                    $('.progress-bar').addClass('bg-danger');
+
+                    $('.pwdResult').addClass('text-danger').text('Very Week');
+                    $('.progress-bar').css('width', '10%');
+                } else if (strength == 2) {
+                    $('.pwdResult').addClass('good');
+                    $('.progress-bar').removeClass('bg-danger');
+                    $('.progress-bar').addClass('bg-warning');
+                    $('.pwdResult').addClass('text-warning').text('Week')
+                    $('.progress-bar').css('width', '60%');
+                } else if (strength == 4) {
+                    $('.pwdResult').removeClass("text-danger text-warning text-success");
+                    $('.pwdResult').addClass('strong');
+                    $('.progress-bar').removeClass('bg-warning');
+                    $('.progress-bar').addClass('bg-success');
+                    $('.pwdResult').addClass('text-success').text('Strength');
+                    $('.progress-bar').css('width', '100%');
+                }
+            }
+        });
+
+    </script>
 
 
 </head>
@@ -203,41 +212,59 @@
                         </div>
 
                         <div class="form-label-group">
-                            <input type="password" id="inputPassword" name="pwd" class="form-control" placeholder="Password"
+                            <input type="password" id="inputPassword" name="pwd" class="form-control"
+                                   placeholder="Password"
                                    required
-  									data-toggle="popover" data-placement="right" data-html="true" data-popover-content="#popover-password">
+                                   data-toggle="popover" data-placement="right" data-html="true"
+                                   data-popover-content="#popover-password">
                             <label for="inputPassword">암호</label>
 
-                            <div id="popover-password" >
+                            <div id="popover-password">
                                 <div class="popover-body">
                                     <p>Password Strength: <span id="result" class="pwdResult"> </span></p>
                                     <div class="progress">
-                                        <div id="password-strength" class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:0%">
+                                        <div id="password-strength" class="progress-bar"
+                                             role="progressbar" aria-valuemin="0" aria-valuemax="100"
+                                             style="width:0%">
                                         </div>
                                     </div>
                                     <ul class="list-unstyled">
-                                        <li class=""><span class="low-upper-case"><i class="fa fa-times" aria-hidden="true"></i></span>&nbsp; 1 lowercase &amp; 1 uppercase</li>
-                                        <li class=""><span class="one-number"><i class="fa fa-times" aria-hidden="true"></i></span> &nbsp;1 number (0-9)</li>
-                                        <li class=""><span class="one-special-char"><i class="fa fa-times" aria-hidden="true"></i></span> &nbsp;1 Special Character (!@#$%^&*).</li>
-                                        <li class=""><span class="eight-character"><i class="fa fa-times" aria-hidden="true"></i></span>&nbsp; Atleast 8 Character</li>
+                                        <li class=""><span class="low-upper-case"><i class="fa fa-times"
+                                                                                     aria-hidden="true"></i></span>&nbsp;
+                                            1 lowercase &amp; 1 uppercase
+                                        </li>
+                                        <li class=""><span class="one-number"><i class="fa fa-times"
+                                                                                 aria-hidden="true"></i></span> &nbsp;1
+                                            number (0-9)
+                                        </li>
+                                        <li class=""><span class="one-special-char"><i class="fa fa-times"
+                                                                                       aria-hidden="true"></i></span>
+                                            &nbsp;1 Special Character (!@#$%^&*).
+                                        </li>
+                                        <li class=""><span class="eight-character"><i class="fa fa-times"
+                                                                                      aria-hidden="true"></i></span>&nbsp;
+                                            Atleast 8 Character
+                                        </li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="form-label-group">
-                            <input type="password" id="inputPassword2" name="pwd2" class="form-control" placeholder="Password"
+                            <input type="password" id="inputPassword2" name="pwd2" class="form-control"
+                                   placeholder="Password"
                                    required>
                             <label for="inputPassword2">암호 확인</label>
                         </div>
 
-					    <div class="form-label-group">
-                            <input type="text" id="inputNick" name="nickname" class="form-control" placeholder="nickname"
+                        <div class="form-label-group">
+                            <input type="text" id="inputNick" name="nickname" class="form-control"
+                                   placeholder="nickname"
                                    required>
                             <label for="inputNick">닉네임</label>
                         </div>
 
-						<div class="form-label-group">
+                        <div class="form-label-group">
                             <input type="text" id="inputPhone" name="phone" class="form-control" placeholder="phone"
                                    required>
                             <label for="inputPhone">핸드폰 번호</label>
@@ -246,7 +273,7 @@
                         <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">JOIN
                         </button>
                         <hr class="my-4">
-						
+
 
                     </form>
                 </div>
