@@ -162,7 +162,7 @@
 			                $('.progress-bar').css('width', '60%');
 			                return 'Week'
 			            } else if (strength == 4) {
-			                $('.pwdResult').removeClass()
+			                $('.pwdResult').removeClass("text-danger text-warning text-success");
 			                $('.pwdResult').addClass('strong');
 			                $('.progress-bar').removeClass('progress-bar-warning');
 			                $('.progress-bar').addClass('progress-bar-success');
