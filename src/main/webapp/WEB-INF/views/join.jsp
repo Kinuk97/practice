@@ -149,25 +149,25 @@
 			            // If value is less than 2
 
 			            if (strength < 2) {
-			                $('#result').removeClass()
-			                $('#password-strength').addClass('progress-bar-danger');
+			                $('.pwdResult').removeClass("text-danger text-warning text-success");
+			                $('.progress-bar').addClass('progress-bar-danger');
 
-			                $('#result').addClass('text-danger').text('Very Week');
-			                $('#password-strength').css('width', '10%');
+			                $('.pwdResult').addClass('text-danger').text('Very Week');
+			                $('.progress-bar').css('width', '10%');
 			            } else if (strength == 2) {
-			                $('#result').addClass('good');
-			                $('#password-strength').removeClass('progress-bar-danger');
-			                $('#password-strength').addClass('progress-bar-warning');
-			                $('#result').addClass('text-warning').text('Week')
-			                $('#password-strength').css('width', '60%');
+			                $('.pwdResult').addClass('good');
+			                $('.progress-bar').removeClass('progress-bar-danger');
+			                $('.progress-bar').addClass('progress-bar-warning');
+			                $('.pwdResult').addClass('text-warning').text('Week')
+			                $('.progress-bar').css('width', '60%');
 			                return 'Week'
 			            } else if (strength == 4) {
-			                $('#result').removeClass()
-			                $('#result').addClass('strong');
-			                $('#password-strength').removeClass('progress-bar-warning');
-			                $('#password-strength').addClass('progress-bar-success');
-			                $('#result').addClass('text-success').text('Strength');
-			                $('#password-strength').css('width', '100%');
+			                $('.pwdResult').removeClass()
+			                $('.pwdResult').addClass('strong');
+			                $('.progress-bar').removeClass('progress-bar-warning');
+			                $('.progress-bar').addClass('progress-bar-success');
+			                $('.pwdResult').addClass('text-success').text('Strength');
+			                $('.progress-bar').css('width', '100%');
 
 			                return 'Strong'
 			            }
@@ -210,7 +210,7 @@
 
                             <div id="popover-password" >
                                 <div class="popover-body">
-                                    <p>Password Strength: <span id="result"> </span></p>
+                                    <p>Password Strength: <span id="result" class="pwdResult"> </span></p>
                                     <div class="progress">
                                         <div id="password-strength" class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:0%">
                                         </div>
