@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+D<%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
@@ -15,6 +15,24 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
+        	
+			//핸드폰 번호 양식
+			$('#inputPhone').keydown(function(event){
+				
+				var key = event.charCode || event.keyCode || 0;
+				$text = $(this);
+				if(key !== 8 && key !==9){
+					if($text.val().length === 3){
+						$text.val($text.val() + '-');
+					}
+					if($text.val().length === 8){
+						$text.val($text.val() + '-')
+					}
+				}
+				return (key==8 || key==9 || key ==46 || (key >=48 && key <=57) || (key >=96 && key <= 105));
+				
+			});
+        	
             // 비밀번호 안전도
             var strength = 0;
 
@@ -223,7 +241,7 @@
                         </div>
 
                         <div class="form-label-group">
-                            <input type="text" id="inputPhone" name="phone" class="form-control" placeholder="phone"
+                            <input type="text" id="inputPhone" name="phone" class="form-control" maxlength="13"
                                    required>
                             <label for="inputPhone">핸드폰 번호</label>
                         </div>
