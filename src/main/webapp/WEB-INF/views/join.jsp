@@ -1,7 +1,7 @@
-D<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <title>Insert title here</title>
@@ -15,24 +15,28 @@ D<%@ page language="java" contentType="text/html; charset=UTF-8"
 
     <script type="text/javascript">
         $(document).ready(function () {
-        	
-			//핸드폰 번호 양식
-			$('#inputPhone').keydown(function(event){
-				
-				var key = event.charCode || event.keyCode || 0;
-				$text = $(this);
-				if(key !== 8 && key !==9){
-					if($text.val().length === 3){
-						$text.val($text.val() + '-');
-					}
-					if($text.val().length === 8){
-						$text.val($text.val() + '-')
-					}
-				}
-				return (key==8 || key==9 || key ==46 || (key >=48 && key <=57) || (key >=96 && key <= 105));
-				
-			});
-        	
+            var emailReg = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+            // checkStrength() 사용
+            // var pwdReg;
+            var nicknameReg = "";
+            var phonRegvar = /^\d{3}-\d{3,4}-\d{4}$/;
+
+            //핸드폰 번호 양식
+            $('#inputPhone').keydown(function (event) {
+                var key = event.charCode || event.keyCode || 0;
+
+                $text = $(this);
+                if (key !== 8 && key !== 9) {
+                    if ($text.val().length === 3) {
+                        $text.val($text.val() + '-');
+                    }
+                    if ($text.val().length === 8) {
+                        $text.val($text.val() + '-')
+                    }
+                }
+                return (key == 8 || key == 9 || key == 46 || (key >= 48 && key <= 57) || (key >= 96 && key <= 105));
+            });
+
             // 비밀번호 안전도
             var strength = 0;
 
@@ -58,7 +62,7 @@ D<%@ page language="java" contentType="text/html; charset=UTF-8"
             // });
 
             // 비밀번호 확인 이벤트
-            $('#confirm-password').blur(function() {
+            $('#confirm-password').blur(function () {
                 if ($('#inputPassword').val() !== $('#confirm-password').val()) {
                     $('#popover-cpassword').attr('hidden', false);
                     $('#sign-up').attr('disabled', true);
@@ -69,12 +73,12 @@ D<%@ page language="java" contentType="text/html; charset=UTF-8"
             });
 
             // 팝오버 생성 이벤트
-            $('#inputPassword').on('shown.bs.popover', function() {
+            $('#inputPassword').on('shown.bs.popover', function () {
                 checkStrength();
             });
 
             // 비밀번호 입력 이벤트
-            $('#inputPassword').on("keyup", function() {
+            $('#inputPassword').on("keyup", function () {
                 checkStrength();
             });
 
@@ -89,50 +93,50 @@ D<%@ page language="java" contentType="text/html; charset=UTF-8"
                     strength += 1;
                     $('.low-upper-case').addClass('text-success');
                     $('.low-upper-case i').removeClass('fa-times').addClass('fa-check');
-                    $('#popover-password-top').addClass('hide');
-
-
+                    // $('#popover-password-top').attr('hidden', true);
                 } else {
+
+
                     $('.low-upper-case').removeClass('text-success');
                     $('.low-upper-case i').addClass('fa-times').removeClass('fa-check');
-                    $('#popover-password-top').removeClass('hide');
+                    // $('#popover-password-top').attr('hidden', false);
                 }
-
                 //If it has numbers and characters, increase strength value.
+
                 if (password.match(/([a-zA-Z])/) && password.match(/([0-9])/)) {
                     strength += 1;
                     $('.one-number').addClass('text-success');
                     $('.one-number i').removeClass('fa-times').addClass('fa-check');
-                    $('#popover-password-top').addClass('hide');
+                    // $('#popover-password-top').attr('hidden', true);
                 } else {
                     $('.one-number').removeClass('text-success');
                     $('.one-number i').addClass('fa-times').removeClass('fa-check');
-                    $('#popover-password-top').removeClass('hide');
+                    // $('#popover-password-top').attr('hidden', false);
                 }
-
                 //If it has one special character, increase strength value.
+
                 if (password.match(/([!,%,&,@,#,$,^,*,?,_,~])/)) {
                     strength += 1;
                     $('.one-special-char').addClass('text-success');
                     $('.one-special-char i').removeClass('fa-times').addClass('fa-check');
-                    $('#popover-password-top').addClass('hide');
-
+                    // $('#popover-password-top').attr('hidden', true);
                 } else {
+
                     $('.one-special-char').removeClass('text-success');
                     $('.one-special-char i').addClass('fa-times').removeClass('fa-check');
-                    $('#popover-password-top').removeClass('hide');
+                    // $('#popover-password-top').attr('hidden', false);
                 }
-
                 if (password.length > 7) {
+
                     strength += 1;
                     $('.eight-character').addClass('text-success');
                     $('.eight-character i').removeClass('fa-times').addClass('fa-check');
-                    $('#popover-password-top').addClass('hide');
+                    // $('#popover-password-top').attr('hidden', true);
 
                 } else {
                     $('.eight-character').removeClass('text-success');
                     $('.eight-character i').addClass('fa-times').removeClass('fa-check');
-                    $('#popover-password-top').removeClass('hide');
+                    // $('#popover-password-top').attr('hidden', false);
                 }
 
                 // If value is less than 2
@@ -162,9 +166,12 @@ D<%@ page language="java" contentType="text/html; charset=UTF-8"
                     $('.progress-bar').addClass('bg-success');
                     $('.pwdResult').addClass('text-success').text('Strength');
                     $('.progress-bar').css('width', '100%');
-
+                    $('#popover-password-top').attr('hidden', true);
                     return true;
+
                 }
+
+                $('#popover-password-top').attr('hidden', false);
             }
         });
 
@@ -193,7 +200,9 @@ D<%@ page language="java" contentType="text/html; charset=UTF-8"
                                    required
                                    data-toggle="popover" data-placement="right" data-html="true"
                                    data-popover-content="#popover-password">
-                            <label for="inputPassword">암호</label>
+                            <label for="inputPassword">암호 <span id="popover-password-top" class="pull-right block-help"
+                                                                hidden="hidden"><i class="fa fa-info-circle text-danger"
+                                                                                   aria-hidden="true"></i> Enter a strong password</span></label>
 
                             <div id="popover-password" hidden="hidden">
                                 <div class="popover-body">
@@ -230,7 +239,10 @@ D<%@ page language="java" contentType="text/html; charset=UTF-8"
                             <input type="password" id="confirm-password" class="form-control"
                                    placeholder="Confirm Password"
                                    required>
-                            <label for="confirm-password">암호 확인 <span id="popover-cpassword" class="text-right block-help" hidden="hidden"><i class="fa fa-info-circle text-danger" aria-hidden="true"></i> Password don't match</span></label>
+                            <label for="confirm-password">암호 확인 <span id="popover-cpassword"
+                                                                      class="text-right block-help" hidden="hidden"><i
+                                    class="fa fa-info-circle text-danger"
+                                    aria-hidden="true"></i> Password don't match</span></label>
                         </div>
 
                         <div class="form-label-group">
@@ -242,11 +254,12 @@ D<%@ page language="java" contentType="text/html; charset=UTF-8"
 
                         <div class="form-label-group">
                             <input type="text" id="inputPhone" name="phone" class="form-control" maxlength="13"
-                                   required>
+                                   placeholder="핸드폰 번호" required>
                             <label for="inputPhone">핸드폰 번호</label>
                         </div>
 
-                        <button class="btn btn-lg btn-primary btn-block text-uppercase" type="button" id="submitBtn">JOIN
+                        <button class="btn btn-lg btn-primary btn-block text-uppercase" type="button" id="submitBtn">
+                            JOIN
                         </button>
                     </form>
                 </div>
