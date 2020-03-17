@@ -15,11 +15,11 @@ public class LoginController {
         this.loginService = loginService;
     }
 
-    @RequestMapping(value = "login", method = RequestMethod.GET)
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
     public void moveLoginPage() {
     }
 
-    @RequestMapping(value = "login", method = RequestMethod.POST)
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String loginAction(Member member) {
         System.out.println(member);
 

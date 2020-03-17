@@ -19,12 +19,12 @@ public class JoinController {
 		this.joinService = joinService;
 	}
 	
-	@RequestMapping(value= "join", method = RequestMethod.GET)
+	@RequestMapping(value= "/join", method = RequestMethod.GET)
 	public void joinPage() {
 		
 	}
 	
-	@RequestMapping(value= "joinProc", method=RequestMethod.POST)
+	@RequestMapping(value= "/joinProc", method=RequestMethod.POST)
 	public String joinProc(Member member) {
 		
 		System.out.println(member);
