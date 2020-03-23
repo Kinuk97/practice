@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Insert title here</title>
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
@@ -15,6 +15,40 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
+        	
+        	
+        	$("#inputEmail").blur(function(){
+        		var email = $("#inputEmail").val();
+        		$.ajax({
+        			
+        			type:"post",
+        			url:"/idCheck",
+        			data: {"email" : email},
+        			success: function(res){
+        				
+        				console.log("res")
+        				console.log(res)
+        				console.log("res.idCheck")
+        				console.log(res.idCheck)
+        				
+        				if(res.idCheck>0){
+        					$("label[for = 'inputEmail' ]").text("아이디 name@example.com 사용불가능한 아이디");
+        				}
+        				
+        			}, error : function(error){
+    					console.log("실패");
+    				}	
+        			
+        		})
+        		
+        	})
+        	
+        	$("#submitBtn").click(function(){
+        		
+				$(this).parents("form").submit();
+        	})
+        	
+			// 정규식
             var emailReg = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
             // checkStrength() 사용
             // var pwdReg;

@@ -12,5 +12,13 @@ public interface JoinService {
 	 * @return - int
 	 */
 	public int joinProc(Member member);
+	
+	/**
+	 * 2020-03-24
+	 * 이메일(아이디) 중복검사
+	 * @param email
+	 * @return - int
+	 */
+	public int emailCheck(String email);
 
 }
