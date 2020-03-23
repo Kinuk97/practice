@@ -19,8 +19,8 @@ public class LoginServiceImpl implements LoginService {
     public Member checkId(Member member) {
         Member checkMember = memberDao.selectOne(member);
 
-        // 맞는 아이디가 없을 경우
-        if (checkMember == null) {
+        // 맞는 아이디가 존재한다면 비밀번호 비교
+        if (checkMember != null) {
             // 로그인 성공
             if (EncryptUtil.isMatch(member.getPwd(), checkMember.getPwd())) {
                 return checkMember;

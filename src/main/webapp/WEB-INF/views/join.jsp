@@ -52,8 +52,9 @@
             var emailReg = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
             // checkStrength() 사용
             // var pwdReg;
-            var nicknameReg = "";
-            var phonRegvar = /^\d{3}-\d{3,4}-\d{4}$/;
+            var checkPwd = false;
+            var nicknameReg = /^[A-Za-z가-힣]{2,16}$/;
+            var phonReg = /^\d{3}-\d{3,4}-\d{4}$/;
 
             //핸드폰 번호 양식
             $('#inputPhone').keydown(function (event) {
@@ -81,7 +82,7 @@
                     return $(content).children(".popover-body").html();
                 }
                 , trigger: 'focus'
-                , placeholder: "right"
+                , placeholder: "bottom"
             });
 
             // submit 버튼 비활성화
@@ -100,9 +101,11 @@
                 if ($('#inputPassword').val() !== $('#confirm-password').val()) {
                     $('#popover-cpassword').attr('hidden', false);
                     $('#sign-up').attr('disabled', true);
+                    checkPwd = false;
                 } else {
                     $('#popover-cpassword').attr('hidden', true);
                     $('#sign-up').attr('disabled', false);
+                    checkPwd = true;
                 }
             });
 
@@ -114,6 +117,23 @@
             // 비밀번호 입력 이벤트
             $('#inputPassword').on("keyup", function () {
                 checkStrength();
+            });
+
+            // 가입 버튼 클릭 이벤트 (정규식 검사)
+            $('#submitBtn').on("click", function () {
+                if (!emailReg.test($("#inputEmail").val())) {
+                    $("#inputEmail").focus();
+                } else if (strength !== 4) {
+                    $("#inputPassword").focus();
+                } else if (!checkPwd) {
+                    $("#confirm-password").focus();
+                } else if (!nicknameReg.test($("#inputNick").val())) {
+                    $("#inputNick").focus();
+                } else if (!phonReg.test($("#inputPhone").val())) {
+                    $("#inputPhone").focus();
+                } else {
+                    $("form").submit();
+                }
             });
 
             // 비밀번호 안전도 검사
@@ -232,7 +252,7 @@
                             <input type="password" id="inputPassword" name="pwd" class="form-control"
                                    placeholder="Password"
                                    required
-                                   data-toggle="popover" data-placement="right" data-html="true"
+                                   data-toggle="popover" data-placement="bottom" data-html="true"
                                    data-popover-content="#popover-password">
                             <label for="inputPassword">암호 <span id="popover-password-top" class="pull-right block-help"
                                                                 hidden="hidden"><i class="fa fa-info-circle text-danger"
